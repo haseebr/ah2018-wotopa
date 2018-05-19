@@ -1,0 +1,96 @@
+<!--
+  Generated template for the LoginSignupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+</ion-header>
+
+
+<ion-content>
+  <!-- <img style="position: absolute" src="assets/imgs/gradient.jpeg"> -->
+  <ion-row>
+    <ion-col style="font-family: cursive;font-size: 12rem;text-align:center;color: white;">W</ion-col>
+  </ion-row>
+  <div padding>
+    <ion-segment [(ngModel)]="login" mode="md" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="login">
+        Login
+      </ion-segment-button>
+      <ion-segment-button value="signup">
+        Signup
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="case">
+    <ion-list *ngSwitchCase="'login'">
+      <ion-grid>
+        <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+          <ion-row justify-content-center>
+            <ion-list>
+              <ion-item>
+                <ion-input email formControlName="email" type="email" placeholder="Email Address"></ion-input>
+              </ion-item>
+              <ion-item *ngIf="loginForm.controls.email.errors?.email && saveAttempt" class="firewire-error">
+                Please enter a valid email
+              </ion-item>
+              <ion-item>
+                <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+              </ion-item>
+              <ion-item *ngIf="loginForm.controls.password.errors?.minlength && saveAttempt" class="firewire-error">
+                Enter atleast 8 Characters
+              </ion-item>
+            </ion-list>
+          </ion-row>
+          <ion-row justify-content-center>
+            <button ion-button icon-end>
+              Sign In
+              <ion-icon name="arrow-round-forward"></ion-icon>
+            </button>
+          </ion-row>
+        </form>
+      </ion-grid>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'signup'">
+      <ion-grid>
+        <form [formGroup]="signupForm" (ngSubmit)="signupUser()">
+          <ion-row justify-content-center>
+            <ion-list>
+              <ion-item>
+                <ion-input email formControlName="email" type="email" placeholder="Email Address"></ion-input>
+              </ion-item>
+              <ion-item *ngIf="signupForm.controls.email.errors?.email && saveAttempt">
+                Please enter a valid email
+              </ion-item>
+              <ion-item>
+                <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+              </ion-item>
+              <ion-item *ngIf="signupForm.controls.password.errors?.minlength && saveAttempt">
+                Enter atleast 8 Characters
+              </ion-item>
+              <ion-item>
+                <ion-input formControlName="fname" type="text" placeholder="First Name"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input formControlName="lname" type="text" placeholder="Last Name"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input formControlName="uname" type="text" placeholder="University"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-row>
+          <ion-row justify-content-center>
+            <button ion-button icon-end>
+              Sign Up
+              <ion-icon name="arrow-round-forward"></ion-icon>
+            </button>
+          </ion-row>
+        </form>
+      </ion-grid>
+    </ion-list>
+  </div>
+
+</ion-content>
